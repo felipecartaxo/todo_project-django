@@ -46,4 +46,18 @@ def todo_list(request):
             # para a tela de listagem
             return redirect("todo_list")
         
-        
+        # remove uma tarefa existente
+        if "delete_task" in request.POST:
+            # coleta o id a partir
+            # da requisição
+            task_id = request.POST.get("task_id")
+
+            # retorna a tarefa que queremos
+            # remover a partir do id ou,
+            # caso não exista, retorna NOT_FOUND
+            todo = get_object_or_404(Todo, id = task_id)
+            todo.delete()
+
+            # após salvo, redireciona
+            # para a tela de listagem
+            return redirect("todo_list")
