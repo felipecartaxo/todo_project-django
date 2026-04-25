@@ -70,3 +70,10 @@ def todo_list(request):
             # após remover todas as tarefas,
             # redireciona para a tela de listagem
             return redirect("todo_list")
+
+    # renderiza o template com
+    # as os dados atualizados das tarefas
+    return render(request, "todo/list.html", {
+        "todos": todos,
+        "task_count": todos.count()
+    })
