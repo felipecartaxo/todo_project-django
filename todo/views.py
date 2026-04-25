@@ -58,6 +58,15 @@ def todo_list(request):
             todo = get_object_or_404(Todo, id = task_id)
             todo.delete()
 
-            # após salvo, redireciona
+            # após removido, redireciona
             # para a tela de listagem
+            return redirect("todo_list")
+        
+        if "clear_all" in request.POST:
+            # remove todos as instâncias
+            # dos objetos do tipo Todo
+            Todo.objects.all().delete()
+
+            # após remover todas as tarefas,
+            # redireciona para a tela de listagem
             return redirect("todo_list")
