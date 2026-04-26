@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo App</title>
 
-    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
 <body>
@@ -32,17 +32,17 @@
         <div class="task">
 
             <!-- texto normal -->
-            <div id="text-{{ todo.id }} class=" task-text">
+            <div id="text-{{ todo.id }}" class="task-text">
                 {{ todo.title }}
             </div>
 
             <!-- modo de edição -->
             <form method="POST" id="edit-{{ todo.id }}" class="edit-form" style="display:none;">
 
-                {{% csrf_token %}}
+                {% csrf_token %}
                 <input type="hidden" name="task_id" value="{{ todo.id }}">
                 <input type="text" name="new_title" value="{{ todo.title }}" class="edit-input" required>
-                <button type="submit" name="edit-task" class="btn btn-save">
+                <button type="submit" name="edit_task" class="btn btn-save">
                     ✔
                 </button>
             </form>
@@ -69,14 +69,14 @@
 
         <!-- rodapé -->
         <div class="footer">
-            <span>Você tem {{ task.count }} tarefas</span>
+            <span>Você tem {{ task_count }} tarefas</span>
 
             <form method="POST">
-                { % csrf_token % }
+                {% csrf_token %}
                 <button
                     type="submit"
-                    name="clear-all"
-                    class="clearn-btn">
+                    name="clear_all"
+                    class="clear-btn">
                     Remova tudo
                 </button>
             </form>
